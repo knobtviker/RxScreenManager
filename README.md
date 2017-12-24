@@ -22,6 +22,22 @@ dependencies {
 }
 ```
 
+Example code:
+```
+//Create new instance
+final RxScreenManager rxScreenManager = RxScreenManager.create(Display.DEFAULT_DISPLAY);
+
+//Set manual brightness value
+Completable.concatArray(
+    rxScreenManager.brightnessMode(RxScreenManager.MANUAL),
+    rxScreenManager.brightness(255)
+)
+    .subscribe(
+        () -> Log.i("ExampleApp", "Brightness set to max"),
+        throwable -> Log.e("ExampleApp, "Error", throwable)
+    );
+```
+
 ### TODO
 - Tests.
 - Example app.
