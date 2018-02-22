@@ -1,4 +1,4 @@
-package com.knobtviker.android.things.device;
+package com.knobtviker.android.things.contrib.community.support.rxscreenmanager;
 
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
