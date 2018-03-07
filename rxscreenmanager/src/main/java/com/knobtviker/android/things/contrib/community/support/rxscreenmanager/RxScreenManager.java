@@ -60,7 +60,7 @@ public class RxScreenManager {
     }
 
     private RxScreenManager(final int displayId) {
-        screenManager = new ScreenManager(displayId);
+        screenManager = ScreenManager.getInstance(displayId);
     }
 
     /**
@@ -85,16 +85,17 @@ public class RxScreenManager {
     public @interface Brightness {
     }
 
-    /**
-     * Brightness mode.
-     */
-    @Retention(RetentionPolicy.SOURCE)
-    @IntDef({MANUAL, AUTOMATIC})
-    public @interface BrightnessMode {
-    }
-
-    public static final int MANUAL = ScreenManager.BRIGHTNESS_MODE_MANUAL;
-    public static final int AUTOMATIC = ScreenManager.BRIGHTNESS_MODE_AUTOMATIC;
+    // Removed from Android Things DP7.
+//    /**
+//     * Brightness mode.
+//     */
+//    @Retention(RetentionPolicy.SOURCE)
+//    @IntDef({MANUAL, AUTOMATIC})
+//    public @interface BrightnessMode {
+//    }
+//
+//    public static final int MANUAL = ScreenManager.BRIGHTNESS_MODE_MANUAL;
+//    public static final int AUTOMATIC = ScreenManager.BRIGHTNESS_MODE_AUTOMATIC;
 
     /**
      * Locks the rotation of the screen to the specified rotation.
@@ -144,21 +145,22 @@ public class RxScreenManager {
         });
     }
 
-    /**
-     * Sets the brightness mode. Automatic mode requires a TYPE_LIGHT sensor outputing values in Lux.
-     */
-    public Completable brightnessMode(@BrightnessMode final int brightnessMode) {
-        return Completable.create(emitter -> {
-            if (!emitter.isDisposed()) {
-                try {
-                    screenManager.setBrightnessMode(brightnessMode);
-                    emitter.onComplete();
-                } catch (Exception e) {
-                    emitter.onError(e);
-                }
-            }
-        });
-    }
+    //REmoved from Android Things DP7.
+//    /**
+//     * Sets the brightness mode. Automatic mode requires a TYPE_LIGHT sensor outputing values in Lux.
+//     */
+//    public Completable brightnessMode(@BrightnessMode final int brightnessMode) {
+//        return Completable.create(emitter -> {
+//            if (!emitter.isDisposed()) {
+//                try {
+//                    screenManager.setBrightnessMode(brightnessMode);
+//                    emitter.onComplete();
+//                } catch (Exception e) {
+//                    emitter.onError(e);
+//                }
+//            }
+//        });
+//    }
 
     /**
      * Sets the display density of the screen.
@@ -192,19 +194,20 @@ public class RxScreenManager {
         });
     }
 
-    /**
-     * Sets the duration of inactivity before the device goes to sleep.
-     */
-    public Completable screenOffTimeout(final long value, @NonNull final TimeUnit unit) {
-        return Completable.create(emitter -> {
-            if (!emitter.isDisposed()) {
-                try {
-                    screenManager.setScreenOffTimeout(value, unit);
-                    emitter.onComplete();
-                } catch (Exception e) {
-                    emitter.onError(e);
-                }
-            }
-        });
-    }
+    //Removed from Android Things DP7.
+//    /**
+//     * Sets the duration of inactivity before the device goes to sleep.
+//     */
+//    public Completable screenOffTimeout(final long value, @NonNull final TimeUnit unit) {
+//        return Completable.create(emitter -> {
+//            if (!emitter.isDisposed()) {
+//                try {
+//                    screenManager.setScreenOffTimeout(value, unit);
+//                    emitter.onComplete();
+//                } catch (Exception e) {
+//                    emitter.onError(e);
+//                }
+//            }
+//        });
+//    }
 }
